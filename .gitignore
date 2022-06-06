@@ -21,3 +21,4 @@
 # log
 *.log
 logs/*
+!logs/README.md
