@@ -1,0 +1,65 @@
+name: Unit-Test
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+      - 'fix/**'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  unit-test:
+
+    runs-on: ubuntu-latest
+
+    env:
+      TEST_LOG_DIR: /home/runner/work/autograph-backend-controller/autograph-backend-controller/logs
+      TEST_FULL_CONSOLE_LOG: true
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: metadata_test
+          MYSQL_USER: metadata_test
+          MYSQL_PASSWORD: metadata_test
+          MYSQL_ROOT_PASSWORD: secretroot
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+      rabbitmq:
+        image: rabbitmq:3.9-management
+        ports:
+          - 5672:5672
+          - 15672:15672
+
+    steps:
+
+      - name: Verify MySQL connection
+        run: mysql --host 127.0.0.1 --port 3306 metadata_test -u metadata_test -pmetadata_test -e "SHOW TABLES"
+
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+
+      - name: Show Current Dir
+        run: pwd && chmod 777 logs && ls -al
+
+      - name: Tidy
+        run: go mod tidy
+
+      - name: Test
+        run: go test -v -cover ./...
+
+      # Because all packages has already been tested,
+      # this command should use the cached result directly.
+      - name: Show Cover
+        run: go test -cover ./...
+
