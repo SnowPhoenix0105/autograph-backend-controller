@@ -7,7 +7,7 @@ import (
 )
 
 func TestGetCurrentFuncName(t *testing.T) {
-	assert.Equal(t, "common.TestGetCurrentFuncName", GetCurrentFuncName())
+	assert.Equal(t, "utils.TestGetCurrentFuncName", GetCurrentFuncName())
 }
 
 func TestWrapError(t *testing.T) {
