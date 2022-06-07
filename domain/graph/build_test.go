@@ -323,6 +323,7 @@ func TestBuildKG(t *testing.T) {
 				require.Equal(t, []metadata.FileInfo{{
 					FileID:   file[i/40].ID,
 					FileName: file[i/40].Name + ".txt",
+					FileType: "txt",
 				}}, info.Files)
 			}
 
@@ -374,6 +375,7 @@ func TestBuildKG(t *testing.T) {
 			require.Equal(t, []metadata.FileInfo{{
 				FileID:   file[i/40].ID,
 				FileName: file[i/40].Name + ".txt",
+				FileType: "txt",
 			}}, info.Files)
 		}
 
@@ -413,6 +415,7 @@ func TestBuildKG(t *testing.T) {
 			require.Equal(t, []metadata.FileInfo{{
 				FileID:   file[i/40].ID,
 				FileName: file[i/40].Name + ".txt",
+				FileType: "txt",
 			}}, sourceSchema.Files)
 		}
 
