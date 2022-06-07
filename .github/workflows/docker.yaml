@@ -1,4 +1,4 @@
-name: Go
+name: Publish
 
 on:
   push:
@@ -59,7 +59,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/autograph_frontend_controller:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/autograph_backend_controller:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
