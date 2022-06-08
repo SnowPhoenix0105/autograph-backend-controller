@@ -107,6 +107,7 @@ type Extractor struct {
 	Name string `gorm:"type:varchar(64) not null"`
 	Desc string
 	Type uint `gorm:"comment:Model=1, HumanIntervention=2"`
+	URL  string
 
 	ProducedEntities  []Entity   `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	ProducedRelations []Relation `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
