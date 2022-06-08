@@ -20,4 +20,5 @@
 
 # log
 *.log
+!logs/README.md
 logs/*

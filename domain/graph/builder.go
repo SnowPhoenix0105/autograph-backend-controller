@@ -151,7 +151,7 @@ func (b *kgBuilder) collectEntities(humanInterventionExtractorIDList []uint) (ma
 	rows, err := b.tx.Model(&metadata.Entity{}).
 		Distinct("name").
 		Select("name").
-		Where("extractor_id in ?", b.config.ExtractorIDList).
+		Where("extractor_id in ? and type != ?", b.config.ExtractorIDList, metadata.EntityTypeTmp).
 		Rows()
 	if err != nil {
 		return nil, utils.WrapError(err, "select entities from db fail")

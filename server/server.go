@@ -38,6 +38,10 @@ func New(config *Config) *Server {
 		adminGroup.POST("/upload", handler.UploadFile)
 		adminGroup.POST("/build", handler.BuildVersion)
 		adminGroup.GET("/listfile", handler.ListFile)
+		adminGroup.GET("/listversion", handler.ListVersion)
+		adminGroup.GET("/listextractor", handler.ListExtractor)
+		adminGroup.POST("/intervention", handler.Intervention)
+		adminGroup.GET("/search", handler.Search)
 	}
 
 	return &Server{

@@ -88,12 +88,12 @@ func (h *buildVersionHandler) produce() (uint, error) {
 
 	entityFileInfo, err := filesave.SaveFile(entityData)
 	if err != nil {
-		return 0, utils.WrapErrorf(err, "save entity csv fail", buildInfo.BuildID)
+		return 0, utils.WrapErrorf(err, "save entity csv [buildID=%d] fail", buildInfo.BuildID)
 	}
 
 	relationFileInfo, err := filesave.SaveFile(relationData)
 	if err != nil {
-		return 0, utils.WrapErrorf(err, "save relation csv fail", buildInfo.BuildID)
+		return 0, utils.WrapErrorf(err, "save relation csv [buildID=%d] fail", buildInfo.BuildID)
 	}
 
 	entityFileURL := fmt.Sprintf("http://%s/raw/%s", filesave.GetConfig().FullHost(), entityFileInfo.URL)

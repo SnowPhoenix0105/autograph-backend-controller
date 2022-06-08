@@ -8,6 +8,7 @@ const (
 const (
 	EntityTypeAdd uint = 1
 	EntityTypeDel uint = 2
+	EntityTypeTmp uint = 3
 )
 
 const (
