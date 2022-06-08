@@ -241,12 +241,12 @@ func (h *searchHandler) produceRecord(record *neo4j.Record) error {
 		case neo4j.Node:
 			err := h.produceNode(&value)
 			if err != nil {
-				return utils.WrapErrorf(err, "produce node [%d] fail")
+				return utils.WrapErrorf(err, "produce node [%d] fail", value.Id)
 			}
 		case neo4j.Relationship:
 			err := h.produceRelation(&value)
 			if err != nil {
-				return utils.WrapErrorf(err, "produce relation [%d] fail")
+				return utils.WrapErrorf(err, "produce relation [%d] fail", value.Id)
 			}
 		default:
 			logging.Default().Warnf("key=%#v, unknown type of value=%#v", record.Keys[i], value)
